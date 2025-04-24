@@ -1,5 +1,4 @@
 "use client";
-
 const ClientComponent = () => {
   return <ServerComponent />;
 };
