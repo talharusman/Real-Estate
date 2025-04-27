@@ -8,13 +8,13 @@ export async function uploadImages(images: File[]) {
 
   const data = await Promise.all(
     images.map((file) =>
-      supabase.storage.from("propertyImages").upload(`${file.name}_${Date.now()}`, file)
+      supabase.storage.from("propertyimages").upload(`${file.name}_${Date.now()}`, file)
     )
   );
 
   const urls = data.map(
     (item) =>
-      supabase.storage.from("propertyImages").getPublicUrl(item.data?.path ?? "").data.publicUrl
+      supabase.storage.from("propertyimages").getPublicUrl(item.data?.path ?? "").data.publicUrl
   );
 
   return urls;

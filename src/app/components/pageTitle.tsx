@@ -6,10 +6,10 @@ interface Props {
 }
 const PageTitle = (props: Props) => {
   return (
-    <div className="p-4 bg-gradient-to-br from-cyan-400 to-blue-600 flex justify-between">
+    <div className="p-4 bg-gradient-to-br from-primary-400 to-secondary-500 flex justify-between">
       <h1 className="text-white text-xl font-medium">{props.title}</h1>
       {props.href!! && (
-        <Link className="text-white hover:text-cyan-200 transition-colors" href={props.href}>
+        <Link className="text-white hover:text-gray-300 transition-colors" href={props.href}>
           {props.linkCaption}
         </Link>
       )}

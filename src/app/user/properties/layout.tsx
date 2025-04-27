@@ -9,11 +9,10 @@ interface Props {
 const PropertiesLayout = ({ children, modalDelete }: Props) => {
   return (
     <div>
-      <div className="bg-primary-400 flex justify-between items-center p-2">
+      <div className="bg-gradient-to-br from-primary-400 to-secondary-500 flex justify-between items-center p-2.5">
         <h2 className="text-white text-xl font-semibold px-2">User Properties</h2>
         <Button
-          color="secondary"
-          className="border-2 border-transparent active:border-white focus:border-white transition-all"
+          color="primary"
         >
           <Link href="/user/properties/add">Add Property</Link>
         </Button>

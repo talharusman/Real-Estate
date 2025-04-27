@@ -78,8 +78,9 @@ if((isLoading || user)){
 }
 
 return (
-  <div  className="p-3  flex items-center bg-gradient-to-br from-sky-400 to-indigo-500">
-  <div className="flex-1 flex justify-center mr-10">
+  
+  <div className="p-1 flex items-center bg-gradient-to-br from-primary-400 to-secondary-500">
+  <div className="flex-1 flex justify-center mt-2 mr-0">
     <Input
       onChange={(e) => handleChange(e.target.value)}
       className="w-96 shadow mb-4"
@@ -88,21 +89,20 @@ return (
       placeholder="Search by property name or city..."
     />
     </div>
-    <div className="flex gap-2 ">
+    <div className="flex gap-1 ">
       <Button
         color={activePurpose === "rent" ? "secondary" : "secondary"}
         variant="solid" // or ghost if using a UI lib that supports it
         onClick={() => handlePurposeFilter("rent")}
-        className={`font-semibold ${activePurpose === "rent" ? "border-2 border-white" : "border-none"}`}
+        className={`font-normal text-white text-base bg-transparent ${activePurpose === "rent" ? "border-2 border-white" : "border-none"}`}
       >
         For Rent
       </Button>
-
       <Button
         color={activePurpose === "sale" ? "secondary" : "secondary"}
         variant="solid"
         onClick={() => handlePurposeFilter("sale")}
-        className={`font-semibold ${activePurpose === "sale" ? "border-2 border-white" : "border-none"}`}
+        className={`font-normal text-white text-base bg-transparent ${activePurpose === "sale" ? "border-2 border-white" : "border-none"}`}
       >
         For Sale
       </Button>
@@ -114,7 +114,7 @@ return (
 }
 else{
   return  (
-    <div className="flex justify-center items-center p-4 bg-gradient-to-br from-sky-400 to-indigo-500 text-white">
+    <div className="flex justify-center items-center p-4 bg-gradient-to-br from-primary-400 to-secondary-500 text-white">
             <p>
             Please{" "}
             <a href="/api/auth/login" className="underline font-bold">
