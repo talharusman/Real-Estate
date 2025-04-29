@@ -70,11 +70,12 @@ export default async function Home({ searchParams }: Props) {
   const [properties, totalProperties] = await Promise.all([propertiesPromise, totalPropertiesPromise])
 
   const totalPages = Math.floor(totalProperties / PAGE_SIZE)
+  const hasResults = properties.length > 0
 
   return (
     <div>
       <Search />
-      <PropertyContainer totalPages={totalPages} currentPage={+pagenum}>
+      <PropertyContainer totalPages={totalPages} currentPage={+pagenum} hasResults={hasResults}>
         {properties.map((propertyItem) => (
           <PropertyCard property={propertyItem} key={propertyItem.id} />
         ))}
@@ -82,4 +83,3 @@ export default async function Home({ searchParams }: Props) {
     </div>
   )
 }
-
