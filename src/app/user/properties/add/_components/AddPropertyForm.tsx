@@ -118,42 +118,59 @@ const AddPropertyForm = ({ isEdit = false, ...props }: Props) => {
       router.push("/user/properties")
     }
   }
-  return (
-    <div>
-      <Stepper className="m-2" items={steps} activeItem={step} setActiveItem={setStep} />
-      <FormProvider {...methods}>
-        <form className="mt-3 p-2" onSubmit={methods.handleSubmit(onSubmit, (errors) => console.log({ errors }))}>
-          <Basic
-            className={cn({ hidden: step !== 0 })}
-            next={() => setStep((prev) => prev + 1)}
-            types={props.types}
-            statuses={props.statuses}
-          />
-          <Location
-            next={() => setStep((prev) => prev + 1)}
-            prev={() => setStep((prev) => prev - 1)}
-            className={cn({ hidden: step !== 1 })}
-          />
-          <Features
-            next={() => setStep((prev) => prev + 1)}
-            prev={() => setStep((prev) => prev - 1)}
-            className={cn({ hidden: step !== 2 })}
-          />
-          <Picture
-            next={() => setStep((prev) => prev + 1)}
-            prev={() => setStep((prev) => prev - 1)}
-            className={cn({ hidden: step !== 3 })}
-            images={images}
-            setImages={setImages}
-            {...(props.property! && {
-              savedImagesUrl: savedImagesUrl,
-              setSavedImageUrl: setSavedImagesUrl,
-            })}
-          />
 
-          <Contact prev={() => setStep((prev) => prev - 1)} className={cn({ hidden: step !== 4 })} />
-        </form>
-      </FormProvider>
+  return (
+    <div className="min-h-screen bg-gray-50 py-2 sm:py-4 px-2 sm:px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white rounded-lg shadow-sm p-3 sm:p-4 md:p-6">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800">
+            {isEdit ? "Edit Property" : "Add New Property"}
+          </h1>
+
+          <div className="mb-4 sm:mb-6">
+            <Stepper className="px-1 sm:px-2" items={steps} activeItem={step} setActiveItem={setStep} />
+          </div>
+
+          <FormProvider {...methods}>
+            <form
+              className="mt-3 space-y-4"
+              onSubmit={methods.handleSubmit(onSubmit, (errors) => console.log({ errors }))}
+            >
+              <div className="min-h-[400px] sm:min-h-[300px]">
+                <Basic
+                  className={cn({ hidden: step !== 0 })}
+                  next={() => setStep((prev) => prev + 1)}
+                  types={props.types}
+                  statuses={props.statuses}
+                />
+                <Location
+                  next={() => setStep((prev) => prev + 1)}
+                  prev={() => setStep((prev) => prev - 1)}
+                  className={cn({ hidden: step !== 1 })}
+                />
+                <Features
+                  next={() => setStep((prev) => prev + 1)}
+                  prev={() => setStep((prev) => prev - 1)}
+                  className={cn({ hidden: step !== 2 })}
+                />
+                <Picture
+                  next={() => setStep((prev) => prev + 1)}
+                  prev={() => setStep((prev) => prev - 1)}
+                  className={cn({ hidden: step !== 3 })}
+                  images={images}
+                  setImages={setImages}
+                  {...(props.property! && {
+                    savedImagesUrl: savedImagesUrl,
+                    setSavedImageUrl: setSavedImagesUrl,
+                  })}
+                />
+
+                <Contact prev={() => setStep((prev) => prev - 1)} className={cn({ hidden: step !== 4 })} />
+              </div>
+            </form>
+          </FormProvider>
+        </div>
+      </div>
     </div>
   )
 }

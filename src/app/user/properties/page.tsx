@@ -1,19 +1,18 @@
-import prisma from "@/lib/prisma";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import React from "react";
-import PropertiesTable from "./_components/PropertiesTable";
+import prisma from "@/lib/prisma"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import PropertiesTable from "./_components/PropertiesTable"
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 12
 
 interface Props {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 const PropertiesPage = async ({ searchParams }: Props) => {
-  const { getUser } = await getKindeServerSession();
-  const user = await getUser();
+  const { getUser } = await getKindeServerSession()
+  const user = await getUser()
 
-  const pagenum = searchParams.pagenum ?? 0;
+  const pagenum = searchParams.pagenum ?? 0
   const propertiesPromise = prisma.property.findMany({
     where: {
       userId: user?.id,
@@ -24,24 +23,21 @@ const PropertiesPage = async ({ searchParams }: Props) => {
     },
     skip: +pagenum * PAGE_SIZE,
     take: PAGE_SIZE,
-  });
+  })
 
   const totalPropertiesPromise = prisma.property.count({
     where: {
       userId: user?.id,
     },
-  });
+  })
 
-  const [properties, totalProperties] = await Promise.all([
-    propertiesPromise,
-    totalPropertiesPromise,
-  ]);
+  const [properties, totalProperties] = await Promise.all([propertiesPromise, totalPropertiesPromise])
 
-  const totalPages = Math.floor(totalProperties / PAGE_SIZE);
+  const totalPages = Math.floor(totalProperties / PAGE_SIZE)
 
-  console.log({ properties });
+  console.log({ properties })
 
-  return <PropertiesTable properties={properties} totalPages={totalPages} currentPage={+pagenum} />;
-};
+  return <PropertiesTable properties={properties} totalPages={totalPages} currentPage={+pagenum} />
+}
 
-export default PropertiesPage;
+export default PropertiesPage

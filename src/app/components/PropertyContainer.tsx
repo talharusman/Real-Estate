@@ -24,14 +24,20 @@ const PropertyContainer = ({ children, currentPage, totalPages, hasResults }: Pr
   }
 
   return (
-    <div className="p-5 flex flex-col gap-10 items-center">
+    <div className="p-2 sm:p-3 md:p-5 lg:p-6 flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-10 items-center">
       {hasResults ? (
         <>
-          <div className="flex flex-wrap justify-center gap-6">{children}</div>
-          <PaginationContainer currentPage={currentPage} totalPages={totalPages} />
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6 w-full max-w-7xl">
+            {children}
+          </div>
+          <div className="w-full flex justify-center">
+            <PaginationContainer currentPage={currentPage} totalPages={totalPages} />
+          </div>
         </>
       ) : (
-        <NotFoundResults searchQuery={query} purpose={purpose} resetSearch={resetSearch} />
+        <div className="w-full">
+          <NotFoundResults searchQuery={query} purpose={purpose} resetSearch={resetSearch} />
+        </div>
       )}
     </div>
   )

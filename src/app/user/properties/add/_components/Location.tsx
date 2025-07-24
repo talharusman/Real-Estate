@@ -33,71 +33,97 @@ const Location = (props: Props) => {
   }
 
   return (
-    <Card className={cn("p-2 grid grid-cols-1 md:grid-cols-3 gap-3", props.className)}>
-      <Input
-        {...register("location.streetAddress")}
-        errorMessage={errors.location?.streetAddress?.message}
-        isInvalid={!!errors.location?.streetAddress}
-        label="Street Address"
-        name="location.streetAddress"
-        defaultValue={getValues("location.streetAddress") || ""}
-      />
+    <Card className={cn("p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6", props.className)}>
+      {/* Street Address - Full Width */}
+      <div className="w-full">
+        <Input
+          {...register("location.streetAddress")}
+          errorMessage={errors.location?.streetAddress?.message}
+          isInvalid={!!errors.location?.streetAddress}
+          label="Street Address"
+          name="location.streetAddress"
+          defaultValue={getValues("location.streetAddress") || ""}
+          size="md"
+        />
+      </div>
 
-      <Input
-        {...register("location.city")}
-        errorMessage={errors.location?.city?.message}
-        isInvalid={!!errors.location?.city}
-        label="City"
-        name="location.city"
-        defaultValue={getValues("location.city") || ""}
-      />
+      {/* City and State - Mobile: Stack, Desktop: Side by side */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <Input
+          {...register("location.city")}
+          errorMessage={errors.location?.city?.message}
+          isInvalid={!!errors.location?.city}
+          label="City"
+          name="location.city"
+          defaultValue={getValues("location.city") || ""}
+          size="md"
+        />
 
-      <Input
-        {...register("location.state")}
-        errorMessage={errors.location?.state?.message}
-        isInvalid={!!errors.location?.state}
-        label="State"
-        name="location.state"
-        defaultValue={getValues("location.state") || ""}
-      />
+        <Input
+          {...register("location.state")}
+          errorMessage={errors.location?.state?.message}
+          isInvalid={!!errors.location?.state}
+          label="State"
+          name="location.state"
+          defaultValue={getValues("location.state") || ""}
+          size="md"
+        />
+      </div>
 
-      <Input
-        {...register("location.zip")}
-        errorMessage={errors.location?.zip?.message}
-        isInvalid={!!errors.location?.zip}
-        label="Zip"
-        name="location.zip"
-        defaultValue={getValues("location.zip") || ""}
-      />
+      {/* Zip and Region - Mobile: Stack, Desktop: Side by side */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <Input
+          {...register("location.zip")}
+          errorMessage={errors.location?.zip?.message}
+          isInvalid={!!errors.location?.zip}
+          label="ZIP Code"
+          name="location.zip"
+          defaultValue={getValues("location.zip") || ""}
+          size="md"
+        />
 
-      <Input
-        {...register("location.region")}
-        errorMessage={errors.location?.region?.message}
-        isInvalid={!!errors.location?.region}
-        label="Region"
-        name="location.region"
-        defaultValue={getValues("location.region") || ""}
-      />
+        <Input
+          {...register("location.region")}
+          errorMessage={errors.location?.region?.message}
+          isInvalid={!!errors.location?.region}
+          label="Region"
+          name="location.region"
+          defaultValue={getValues("location.region") || ""}
+          size="md"
+        />
+      </div>
 
-      <Input
-        {...register("location.landmark")}
-        errorMessage={errors.location?.landmark?.message}
-        isInvalid={!!errors.location?.landmark}
-        label="Landmark"
-        name="location.landmark"
-        defaultValue={getValues("location.landmark") || ""}
-      />
+      {/* Landmark - Full Width */}
+      <div className="w-full">
+        <Input
+          {...register("location.landmark")}
+          errorMessage={errors.location?.landmark?.message}
+          isInvalid={!!errors.location?.landmark}
+          label="Landmark"
+          name="location.landmark"
+          defaultValue={getValues("location.landmark") || ""}
+          size="md"
+        />
+      </div>
 
-      <div className="flex justify-center col-span-3 gap-3">
+      {/* Navigation Buttons - Previous Left, Next Right */}
+      <div className="flex justify-between gap-3 sm:gap-4 pt-4 sm:pt-6">
         <Button
           onClick={props.prev}
-          startContent={<ChevronLeftIcon className="w-6" />}
+          startContent={<ChevronLeftIcon className="w-4 h-4 sm:w-5 sm:h-5" />}
           color="primary"
-          className="w-36"
+          className="flex-1 sm:w-36 sm:flex-none"
+          size="md"
         >
           Previous
         </Button>
-        <Button onClick={handleNext} endContent={<ChevronRightIcon className="w-6" />} color="primary" className="w-36">
+        <Button
+          onClick={handleNext}
+          endContent={<ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5" />}
+          color="primary"
+          className="flex-1 sm:w-36 sm:flex-none"
+          size="md"
+        >
           Next
         </Button>
       </div>
